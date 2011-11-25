@@ -1,0 +1,22 @@
+{
+    "name" : "Download TamilBeat",
+    "version" : "0.1",
+    "description" : "Download mp3 songs from TamilBeat",
+    "background_page" : "test.html",
+    "page_action" : {
+        "default_icon" : "dltb.png",
+        "default_title" : "this is a default title",
+        "popup" : "test.html"
+    },
+    "content_scripts" : [
+        {
+            "matches" : [ 
+                "http://www.tamilat.com/*",
+                "http://www.tamilbeat.com/*",
+                "http://www.inisai.net/*"
+            ],
+            "js" : ["content_script.js"]
+        }
+    ],
+    "permissions" : [ "cookies" ]
+}

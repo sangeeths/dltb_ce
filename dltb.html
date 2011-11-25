@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <script language="JavaScript" src="1.js"></script>
+        <script language="JavaScript" src="2.js">
+
+            alert(gv);
+
+            function Downloadall() {
+                alert("Hi, you're attempting to download all songs in this website");
+            }
+
+            function onRequest(request, sender, sendResponse) {
+                //alert(request);
+                chrome.pageAction.show(sender.tab.id);
+                //alert(document.body.innerText);
+                //sendResponse("some mp3 files were found!");
+            }
+            
+            chrome.extension.onRequest.addListener(onRequest);
+        </script>
+        
+    </head>
+    <body>
+        hi, do you see this?!
+        <table>
+        <tr>
+            TamilBeat Download
+        </tr>
+        <tr>
+            I see the following songs for this movie
+        </tr>
+        <tr> Song 1 </tr>
+        <tr> Song 2 </tr>
+        <tr> Song 3 </tr>
+        <tr> Song 4 </tr>
+        <tr> Song 5 </tr>
+        <tr> Song 6 </tr>
+        <tr> 
+            <input type="button" value="Download" onclick="Downloadall">
+        </tr>
+        </table>
+    </body>
+</html>
