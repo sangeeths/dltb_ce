@@ -1,0 +1,68 @@
+<html>
+<head>
+<script language="JavaScript">
+
+function download() {
+    alert("1");
+    var finalURL = "http://www.inisai.net/1234TB/inter/EllameEnKadhali/TamilBeat.Com%20-%20Uyire%20Uyire%20-%20I.mp3";
+    alert("finalURL : " + finalURL);
+
+    var xhr = new XMLHttpRequest();
+    alert("xhr : " + xhr);
+
+    xhr.overrideMimeType("application/octet-stream");
+    alert("xhr.overrideMimeType");
+    //xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+    //alert("xhr.setRequestHeader");
+    xhr.open("GET", finalURL, true);
+    alert("xhr.open");
+    xhr.responseType = "arraybuffer";
+    alert("xhr.responseType");
+
+    xhr.onreadystatechange = function() {
+        alert("xhr.onreadystatechange");
+
+        alert(xhr.readyState);
+        alert(xhr.status);
+
+        //if (xhr.readyState == 4  && xhr.status == 200)
+        //{
+            alert("inside");
+            var bb = new (window.BlobBuilder || window.WebKitBlobBuilder)();
+            alert("bb : " + bb);
+            var res = xhr.response;
+            alert("res : " + res);
+            alert("responseText : " + xhr.responseText);
+            if (res) {
+                var byteArray = new Uint8Array(res);
+                alert("byteArray : " + byteArray);
+            }
+            bb.append(byteArray.buffer);
+            var blob = bb.getBlob("application/octet-stream");
+            var iframe = document.createElement("iframe");
+            iframe.style.display = "none";
+            iframe.src = window.webkitURL.createObjectURL(blob);
+            document.body.appendChild(iframe);
+            delete xhr;
+            delete blob;
+            delete bb;
+        //}
+        alert("outside");
+    };
+    xhr.send(null);
+}
+
+</script>
+</head>
+<body>
+    Hi!!
+    <input type="button" value="Download" onClick="download()">
+</body>
+</html>
+
+
+
+
+
+
+
